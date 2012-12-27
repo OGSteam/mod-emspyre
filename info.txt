@@ -1,0 +1,2 @@
+Module d affichage informations comptes ogame
+
