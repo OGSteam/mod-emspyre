@@ -19,6 +19,10 @@ $mod_folder = "emspyre";
 
 $mod_name = "emspyre";
 
+ // includes classes
+include("mod/".$mod_folder."/common.php");
+create_table();
+
 update_mod($mod_folder, $mod_name);
 
 

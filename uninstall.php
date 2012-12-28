@@ -11,13 +11,18 @@ if (!defined('IN_SPYOGAME')) {
 
 
 
+ // includes classes
+include("mod/emspyre/common.php");
 
+ drop_table();
+    
 
 $mod_uninstall_name = "emspyre";
+$table_name = array();
 
 
 
-uninstall_mod ($mod_uninstall_name);
+uninstall_mod ($mod_uninstall_name,$table_name);
 
 
 

@@ -21,8 +21,8 @@ $is_ok = install_mod ($mod_folder);
 if ($is_ok == true)
 
 	{
-
-		//Ensuite, on crée les tables
+	   include("mod/emspyre/common.php");
+      create_table();
 
 	
 	}
