@@ -15,7 +15,11 @@ define("EMSPYRE_USER", $table_prefix.TAB_PREFIX."_user");
 /// includes des fichiers
 define("FOLDER","mod/emspyre/");
 include(FOLDER."model/install.php");
+include(FOLDER."model/sql.php");
+include(FOLDER."model/user.php");
+include(FOLDER."model/gestion.php");
 include(FOLDER."vue/menu.php");
+include(FOLDER."include/installateur.php");
 
 
 

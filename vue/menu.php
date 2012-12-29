@@ -9,7 +9,7 @@ echo		'<tr align="center">';
 
 
 if ($pub_subaction != "gestion") {
-	echo "\t\t\t"."<td class='c' width='150' onclick=\"window.location = 'index.php?action=home&subaction=Gestion';\">";
+	echo "\t\t\t"."<td class='c' width='150' onclick=\"window.location = 'index.php?action=emspyre&subaction=gestion';\">";
 	echo "<a style='cursor:pointer'><font color='lime'>Gestion</font></a>";
 	echo "</td>";
 }

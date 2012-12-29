@@ -17,13 +17,16 @@ generate_menu($pub_subaction);
       
 if ($pub_subaction == 'gestion')
 { 
-     include(FOLDER."model/gestion.php");
    if (isset($pub_else))
    { 
     if ($pub_else == 'add_player'){add_player_for_spy((int)$pub_g,(int)$pub_s,(int)$pub_r);}
+    if ($pub_else == 'del_player'){del_player_for_spy($pub_id);}
    }
   include(FOLDER."vue/gestion.php");
-  echo 'bajjk';
+}
+if ($pub_subaction == 'voir')
+{ 
+    include(FOLDER."vue/voir.php");
 }
 
 

@@ -1,12 +1,11 @@
 <?php 
 if (!defined('IN_SPYOGAME')) {
-	die("Hacking attempt");
-    
-        
-   $data = get_all_player_spyed();
-   var_dump($data);
-}
+	die("Hacking attempt"); }
 
+
+ $player = get_all_player_spyed();
+ 
+ 
 ?>
     
 <br />
@@ -38,14 +37,19 @@ if (!defined('IN_SPYOGAME')) {
         <th>voir</th>
 	   <th>Supprimer</th>
 		</tr>
-        <tr>
-        <?php   
-       
-        ?>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        </tr>
-	</table>
+        
+        <?php foreach ($player as $p) :?>
+          <tr>
+          <td><?php echo get_user_by_id($p['user_id']);?></td>
+          <td><?php echo $p['coord'];?></td>
+           <td><?php echo get_player_by_coord($p['coord']);?></td>
+        <td><a href="index.php?action=emspyre&subaction=voir&else=voir&id=<?php echo $p['coord'];?>" ><img src="images/zoom_in.png" title="voir" /></a></td>
+        <td><a href="index.php?action=emspyre&subaction=gestion&else=del_player&id=<?php echo $p['coord'];?>" ><img src="images/drop.png" title="Supprimer la surveillance" /></a></td>
+          </tr>
+          <?php endforeach; ?>
+      	</table>
+    
+    
+   
+
+    

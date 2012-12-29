@@ -6,16 +6,19 @@ if (!defined('IN_SPYOGAME')) {
 
 function get_all_player_spyed()
 {
-    global $db;
+    
     $requete = "select *  from ".EMSPYRE_USER."";
-    $result = $db->sql_query($requete);
-        
-      while ($row = $db->sql_fetch_assoc($result)) {
-        var_dump ($row);
-               
-           }
+    $retour =  my_assoc($requete);
     return $retour;
    
+    }
+
+function del_player_for_spy($coord)
+{
+    global $db ; 
+    $requete = "delete  from ".EMSPYRE_USER." where coord = '".$db->sql_escape_string($coord)."' ";
+ 
+    $db->sql_query($requete);
     }
 
 function add_player_for_spy($g,$s,$r)
