@@ -8,15 +8,35 @@ function get_user_by_id($id)
     return $retour[0]['user_name'];
 }
 
-function get_player_by_coord($coord)
+
+
+
+function create_espace_perso($spyed_all_coord_p)
 {
-    $temp = explode(":",$coord);
-    $g = $temp[0];
-    $s = $temp[1];
-    $r = $temp[2];
+    // il faut verifier si une planete existe ou pas dans l espace perso
+foreach($spyed_all_coord_p as $c) 
+{
+    if (!planete_exist($spyed_all_coord_p['coord']))
+    {
+        // dans ce cas, : false, il faut creer espace perso et en estimer diamettre et temperature
+        // on recherche le premier espace libre en fonction de id_planete ( sup a 100)
+        
+        
+        
+    }
+}
     
-    $requete = " select player from ".TABLE_UNIVERSE." where galaxy = '".(int)$g."' and  system = '".(int)$s."' and  `row` = '".(int)$r."' ;  ";
-    $retour = my_assoc($requete);
+}
+
+
+function planete_exist($coord)
+{
+    global $db;
+    $retour = false;
     
-    return $retour[0]['player'];
+    $requete = "select coordinates from ".EMSPYRE_USER_BUILDING." where coordinates = '$coord';";
+    $result = $db->sql_query($requete);
+    if ($db->sql_numrows()>0){ return $true;}
+    return $retour;
+    
 }

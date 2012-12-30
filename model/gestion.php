@@ -16,7 +16,7 @@ function get_all_player_spyed()
 function del_player_for_spy($coord)
 {
     global $db ; 
-    $requete = "delete  from ".EMSPYRE_USER." where coord = '".$db->sql_escape_string($coord)."' ";
+    $requete = "delete  from ".EMSPYRE_USER." where psyed_id = '".$db->sql_escape_string($coord)."' ";
  
     $db->sql_query($requete);
     }
@@ -50,6 +50,43 @@ function add_player_for_spy($g,$s,$r)
     
 }
 
+function get_player_by_coord($coord)
+{
+    $temp = explode(":",$coord);
+    $g = $temp[0];
+    $s = $temp[1];
+    $r = $temp[2];
+    
+    $requete = " select player from ".TABLE_UNIVERSE." where galaxy = '".(int)$g."' and  system = '".(int)$s."' and  `row` = '".(int)$r."' ;  ";
+    $retour = my_assoc($requete);
+    
+    return $retour[0]['player'];
+}
+
+
+function get_coord_by_spyed_id($spyed_id)
+{
+    $requete = "select * from ".EMSPYRE_USER." where spyed_id = '".(int)($spyed_id)."' ; ";
+    $retour = my_assoc($requete);
+    return $retour[0]['coord'];
+}
+
+
+function get_all_coord_p_by_pseudo($pseudo)
+{
+    $requete = " select CONCAT(galaxy,':',system,':',`row`) as coord from ".TABLE_UNIVERSE." where player = '".$pseudo."'  ;  ";
+    $retour = my_assoc($requete);
+      return $retour;
+    
+}
+
+function get_all_coord_m_by_pseudo($pseudo)
+{
+    $requete = " select CONCAT(galaxy,':',system,':',`row`) as coord from ".TABLE_UNIVERSE." where player = '".$pseudo."' and  moon = '1' ;  ";
+    $retour = my_assoc($requete);
+      return $retour;
+    
+}
 
 
 ?>

@@ -9,6 +9,17 @@ if (!defined('IN_SPYOGAME')) {
 ?>
     
 <br />
+to do list ( feuille de route ) :
+<br /><br />
+=> vue empire du joueur recherché<br />
+=> update de l empire du joueur via les re depuis la xéme date<br />
+=> fonction de sync empire ( suppression de planete n existant plus .... )<br />
+=> réécrire les fonctions importante de la vue empire ( accepter les ids )<br />
+=> ajouter les flottes dans la vue empire<br />
+=> voir comment recuperer les point de l investissement empire ( cf stat )<br />
+=> faire une recherche pour estimer flotte manquante ( pt manquant !!!! )<br />
+
+<br />
 <table>
 <form method="POST" action="index.php?action=emspyre&subaction=gestion&else=add_player">
 <input type="hidden" name="t" value="t" />
@@ -34,17 +45,20 @@ if (!defined('IN_SPYOGAME')) {
         <th>Utilisateur</th>
 		<th>Coord pm</th>
 		<th>Joueur surveill&eacute;</th>
+        <th>Derniere mise a jour</th>
+        <th>mettre a jour</th>
         <th>voir</th>
 	   <th>Supprimer</th>
 		</tr>
-        
-        <?php foreach ($player as $p) :?>
-          <tr>
+         <?php foreach ($player as $p) :?>
+              <tr>
           <td><?php echo get_user_by_id($p['user_id']);?></td>
           <td><?php echo $p['coord'];?></td>
            <td><?php echo get_player_by_coord($p['coord']);?></td>
-        <td><a href="index.php?action=emspyre&subaction=voir&else=voir&id=<?php echo $p['coord'];?>" ><img src="images/zoom_in.png" title="voir" /></a></td>
-        <td><a href="index.php?action=emspyre&subaction=gestion&else=del_player&id=<?php echo $p['coord'];?>" ><img src="images/drop.png" title="Supprimer la surveillance" /></a></td>
+        <td><?php echo date("Y-m-d H:i:s" ,$p['datadate']);?></td>
+         <td><a href="index.php?action=emspyre&subaction=update&else=update&id=<?php echo $p['spyed_id'];?>" ><img src="images/save.png" title="voir" /></a></td>
+        <td><a href="index.php?action=emspyre&subaction=voir&else=voir&id=<?php echo $p['spyed_id'];?>" ><img src="images/zoom_in.png" title="voir" /></a></td>
+        <td><a href="index.php?action=emspyre&subaction=gestion&else=del_player&id=<?php echo $p['spyed_id'];?>" ><img src="images/drop.png" title="Supprimer la surveillance" /></a></td>
           </tr>
           <?php endforeach; ?>
       	</table>

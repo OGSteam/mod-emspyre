@@ -24,6 +24,12 @@ if ($pub_subaction == 'gestion')
    }
   include(FOLDER."vue/gestion.php");
 }
+if ($pub_subaction == 'update')
+{ 
+    if (isset($pub_id)){
+    include(FOLDER."vue/update.php");
+}}
+
 if ($pub_subaction == 'voir')
 { 
     include(FOLDER."vue/voir.php");

@@ -92,8 +92,10 @@ function create_table()
              $db->sql_query($query);
              
               $query = "CREATE TABLE IF NOT EXISTS ".EMSPYRE_USER." (";
+              $query .= " spyed_id int(11) NOT NULL AUTO_INCREMENT,"; // utilisateur ogspy qui met en surveillance
               $query .= " user_id int(11) NOT NULL default '0',"; // utilisateur ogspy qui met en surveillance
               $query .= " coord varchar(8) NOT NULL default '', "; // coordonné de la pm du joueur surveillé
+              $query .= " datadate int(12) NOT NULL default '0', "; // coordonné de la pm du joueur surveillé
               $query .= " PRIMARY KEY  (coord) ";
               $query .= " ) ; ";
               
