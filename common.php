@@ -18,7 +18,9 @@ include(FOLDER."model/install.php");
 include(FOLDER."model/sql.php");
 include(FOLDER."model/user.php");
 include(FOLDER."model/gestion.php");
+include(FOLDER."model/re.php");
 include(FOLDER."vue/menu.php");
+include(FOLDER."include/ogame.php");
 
 
 

@@ -52,10 +52,11 @@ function add_player_for_spy($g,$s,$r)
 
 function get_player_by_coord($coord)
 {
-    $temp = explode(":",$coord);
-    $g = $temp[0];
-    $s = $temp[1];
-    $r = $temp[2];
+    $my_coord = split_coord($coord);
+
+    $g = $my_coord['g'];
+    $s = $my_coord['s'];
+    $r = $my_coord['r'];
     
     $requete = " select player from ".TABLE_UNIVERSE." where galaxy = '".(int)$g."' and  system = '".(int)$s."' and  `row` = '".(int)$r."' ;  ";
     $retour = my_assoc($requete);
