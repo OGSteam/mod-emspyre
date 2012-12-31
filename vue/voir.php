@@ -150,7 +150,7 @@ function message(msg) {
 <tr>
 <?php
 if ($view == "planets") {
-	echo "<th colspan='5'><a>Planètes</a></th>";
+	echo "<th colspan='5'><a>Plan&egrave;tes</a></th>";
 	echo "<td class='c' align='center' colspan='5' onClick=\"window.location = 'index.php?action=emspyre&subaction=voir&else=moon&id=".(int)$pub_id."';\"><a style='cursor:pointer'><font color='lime'>Lunes</font></a></td>";
     echo read_th("<td class=\"c\">&nbsp;</td>",$nb_planete);
 }
