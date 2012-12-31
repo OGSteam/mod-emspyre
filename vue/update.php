@@ -22,7 +22,7 @@ recherche des lunes du joueur : <?php $spyed_all_coord_m = get_all_coord_m_by_ps
 creation de l espace perso : <?php echo create_espace_perso_planete($spyed_id,$spyed_all_coord_p) ; ?><br />
 creation de l espace perso (lune) : <?php echo create_espace_perso_moon($spyed_id,$spyed_all_coord_m) ; ?><br />
 derniere importation : <?php echo $spyed_last_update; ?><br />
-importation  des re et constitution de l espace perso <?php  import_re( $spyed_all_coord_p, $spyed_last_update);import_re( $spyed_all_coord_m, $spyed_last_update) ;?>
+importation  des re et constitution de l espace perso <?php  import_re( $spyed_all_coord_p, $spyed_last_update,$spyed_id);import_re( $spyed_all_coord_m, $spyed_last_update,$spyed_id) ;?>
 
 
 
