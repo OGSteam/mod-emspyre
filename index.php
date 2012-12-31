@@ -40,6 +40,11 @@ if ($pub_subaction == 'stat')
     include(FOLDER."vue/stat.php");
 }
 
+if ($pub_subaction == 'simu')
+{ 
+    include(FOLDER."vue/simu.php");
+}
+
 
 
 
