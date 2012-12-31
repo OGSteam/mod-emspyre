@@ -91,12 +91,34 @@ function create_table()
             
              $db->sql_query($query);
              
+             
+             
+              $query = "CREATE TABLE IF NOT EXISTS ".EMSPYRE_USER_FLOTTE." ( ";
+             $query .= "user_id int(11) NOT NULL default '0',";
+             $query .= "  PT int(11) NOT NULL default '0', ";
+            $query .= "  GT int(11) NOT NULL default '0', ";
+            $query .= " CLE int(11) NOT NULL default '0', ";
+            $query .= "  CLO int(11) NOT NULL default '0', ";
+            $query .= " CR int(11) NOT NULL default '0', ";
+            $query .= " VB int(11) NOT NULL default '0', ";
+            $query .= " VC int(11) NOT NULL default '0', ";
+            $query .= " REC int(11) NOT NULL default '0', ";
+            $query .= " SE int(11) NOT NULL default '0', ";
+            $query .= " BMD int(11) NOT NULL default '0', ";
+            $query .= " DST int(11) NOT NULL default '0', ";
+            $query .= " EDLM int(11) NOT NULL default '0', ";
+            $query .= " TRA int(11) NOT NULL default '0', ";
+            $query .= "   PRIMARY KEY  (user_id) ";
+            $query .= " ) ; ";
+         
+             $db->sql_query($query);
+             
               $query = "CREATE TABLE IF NOT EXISTS ".EMSPYRE_USER." (";
               $query .= " spyed_id int(11) NOT NULL AUTO_INCREMENT,"; // utilisateur ogspy qui met en surveillance
               $query .= " user_id int(11) NOT NULL default '0',"; // utilisateur ogspy qui met en surveillance
               $query .= " coord varchar(8) NOT NULL default '', "; // coordonné de la pm du joueur surveillé
               $query .= " datadate int(12) NOT NULL default '0', "; // coordonné de la pm du joueur surveillé
-              $query .= " PRIMARY KEY  (coord) ";
+              $query .= " PRIMARY KEY  (spyed_id) ";
               $query .= " ) ; ";
               
                $db->sql_query($query);
