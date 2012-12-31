@@ -156,5 +156,10 @@ function get_last_update($spyed_id)
      return $retour[0]['datadate'];
 }
 
-
+function set_last_update($datadate , $spyed_id )
+{
+    global $db;
+    $requete = "UPDATE ".EMSPYRE_USER." set datadate =  ".(int)$datadate." where spyed_id = ".$spyed_id." ";
+    $db->sql_query($requete);
+}
 

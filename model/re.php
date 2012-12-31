@@ -24,8 +24,12 @@ function import_re($spyed_all_coord_p, $spyed_last_update, $spyed_id)
 
 
     }
-
+    
+    // fin de le fonction inport_re, on va mettre le timestamp du jour pour eviter de rechercher sur de vieux re
+    set_last_update(time(),$spyed_id);
 }
+
+
 
 
 function find_re($coord, $spyed_last_update)
@@ -170,8 +174,7 @@ function import_flotte($re, $c, $is_lune, $spyed_id)
     // on importe que si superieur a ce qui se trouve en base
        if ($re['PT'] > 0) { 
         $flotte = find_flotte($spyed_id);
-        var_dump($flotte);
-        
+       
         $requete = " replace into  " . EMSPYRE_USER_FLOTTE . " ";
         $requete .= " ( ";
         $requete .= " user_id ";
