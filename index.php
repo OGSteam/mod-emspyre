@@ -45,6 +45,21 @@ if ($pub_subaction == 'simu')
     include(FOLDER."vue/simu.php");
 }
 
+if ($pub_subaction == 'flotte')
+{ 
+    include(FOLDER."vue/flotte.php");
+}
+
+if ($pub_subaction == 'presence')
+{ 
+    include(FOLDER."vue/presence.php");
+}
+
+if ($pub_subaction == 'prod')
+{ 
+    include(FOLDER."vue/prod.php");
+}
+
 
 
 

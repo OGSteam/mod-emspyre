@@ -8,16 +8,6 @@ if (!defined('IN_SPYOGAME')) {
  
 ?>
     
-<br />
-to do list ( feuille de route ) :
-<br /><br />
-=> vue empire du joueur recherché<br />
-=> update de l empire du joueur via les re depuis la xéme date<br />
-=> fonction de sync empire ( suppression de planete n existant plus .... )<br />
-=> réécrire les fonctions importante de la vue empire ( accepter les ids )<br />
-=> ajouter les flottes dans la vue empire<br />
-=> voir comment recuperer les point de l investissement empire ( cf stat )<br />
-=> faire une recherche pour estimer flotte manquante ( pt manquant !!!! )<br />
 
 <br />
 <table>

@@ -13,12 +13,24 @@ function get_all_player_spyed()
    
     }
 
-function del_player_for_spy($coord)
+function del_player_for_spy($spyed_id)
 {
     global $db ; 
-    $requete = "delete  from ".EMSPYRE_USER." where psyed_id = '".$db->sql_escape_string($coord)."' ";
- 
-    $db->sql_query($requete);
+    // on supprime de toutes les tables 
+    $requete = "delete  from ".EMSPYRE_USER." where spyed_id = '".(int)$spyed_id."' ";
+     $db->sql_query($requete);
+     $tables = array(EMSPYRE_USER_BUILDING,EMSPYRE_USER_DEFENCE,EMSPYRE_USER_FLOTTE,EMSPYRE_USER_TECHNOLOGY);
+     foreach($tables as $table)
+     {
+        $requete = "delete  from ".$table." where user_id = '".(int)$spyed_id."' ";
+         $db->sql_query($requete);
+     }
+    
+    
+    
+    
+    
+    
     }
 
 function add_player_for_spy($g,$s,$r)
