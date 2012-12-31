@@ -2,16 +2,21 @@
 if (!defined('IN_SPYOGAME')) {
 	die("Hacking attempt");
 }
+// anti bug : on reprend les memes variables
 if (!isset($pub_id)){ $pub_id = 0;}
+$user_data['off_geologue'] = 0;
+$user_data['off_ingenieur'] = 0;
 
+
+// fin antibug
 
 
 $user_empire = MY_user_get_empire((int)$pub_id);
 $user_building = $user_empire["building"];
 $user_defence = $user_empire["defence"];
 $user_technology = $user_empire["technology"];
-if(!isset($pub_view) || $pub_view=="") $view = "planets";
-elseif ($pub_view == "planets" || $pub_view == "moons") $view = $pub_view;
+if(!isset($pub_else) || $pub_else=="") $view = "planets";
+elseif ($pub_else == "moon") $view = $pub_view;
 else $view = "planets";
 $start = $view=="planets" ? 101 : 201;
  $view_ratio = false; // vue prod reel si ratio inf a 0
@@ -41,7 +46,7 @@ $technology_requirement["Astrophysique"] = array(3, "Esp" => 4, "RI" => 3);
 <?php
 if(isset($pub_alert_empire) && $pub_alert_empire) echo 'message("Pensez à renseigner, si besoin est, les noms de planètes et les températures\nqui ne peuvent pas être récupérées par la page Empire d\'OGame.");';
 
-$nb_planete = find_nb_planete_user();
+$nb_planete = my_find_nb_planete_user((int)$pub_id);
 
 $name = $coordinates = $fields = $temperature_min = $temperature_max = $satellite = "";
 for ($i=101 ; $i<=$nb_planete+100 ; $i++) {
@@ -146,11 +151,11 @@ function message(msg) {
 <?php
 if ($view == "planets") {
 	echo "<th colspan='5'><a>Planètes</a></th>";
-	echo "<td class='c' align='center' colspan='5' onClick=\"window.location = 'index.php?action=home&view=moons';\"><a style='cursor:pointer'><font color='lime'>Lunes</font></a></td>";
+	echo "<td class='c' align='center' colspan='5' onClick=\"window.location = 'index.php?action=emspyre&subaction=voir&else=moon&id=".(int)$pub_id."';\"><a style='cursor:pointer'><font color='lime'>Lunes</font></a></td>";
     echo read_th("<td class=\"c\">&nbsp;</td>",$nb_planete);
 }
 else {
-	echo "<td class='c' align='center' colspan='5' onClick=\"window.location = 'index.php?action=home&view=planets';\"><a style='cursor:pointer'><font color='lime'>Planètes</font></a></td>";
+	echo "<td class='c' align='center' colspan='5' onClick=\"window.location = 'index.php?action=emspyre&subaction=voir&else=voir&id=".(int)$pub_id."';\"><a style='cursor:pointer'><font color='lime'>Planètes</font></a></td>";
 	echo "<th colspan='5'><a>Lunes</a></th>";
       echo read_th("<td class=\"c\">&nbsp;</td>",$nb_planete);
 
@@ -230,37 +235,24 @@ document.getElementById('satellite').style.visibility='hidden';
 
 </form> --> 
 <?php
-// verification de compte de planete/lune avec la technologie astro
-$astro = astro_max_planete($user_technology['Astrophysique']);
-if (((find_nb_planete_user() > $astro )||(find_nb_moon_user() >  $astro))&&($user_technology != false)){
-echo '<tr>';
-echo '	<td class="c" colspan="';
-print ($nb_planete <10)?'10':($nb_planete +1) ; 
-echo '">Une incohérence a été trouvée dans votre espace personnel<br />';
-print (find_nb_planete_user() > $astro )?'En rapport avec le nombre de vos planetes<br />':'' ; 
-print (find_nb_moon_user() > $astro )?'En rapport avec le nombre de vos lunes<br />':'' ; 
-echo ' </td>';
-echo'</tr>';}
-
+//// verification de compte de planete/lune avec la technologie astro
+//$astro = astro_max_planete($user_technology['Astrophysique']);
+//if (((find_nb_planete_user((int)$pub_id) > $astro )||(find_nb_moon_user((int)$pub_id) >  $astro))&&($user_technology != false)){
+//echo '<tr>';
+//echo '	<td class="c" colspan="';
+//print ($nb_planete <10)?'10':($nb_planete +1) ; 
+//echo '">Une incohérence a été trouvée dans votre espace personnel<br />';
+//print (find_nb_planete_user((int)$pub_id) > $astro )?'En rapport avec le nombre de vos planetes<br />':'' ; 
+//print (find_nb_moon_user((int)$pub_id) > $astro )?'En rapport avec le nombre de vos lunes<br />':'' ; 
+//echo ' </td>';
+//echo'</tr>';}
+//
 ?>
 
 <tr>
 	<td class="c" colspan="<?php print ($nb_planete <10)?'10':$nb_planete +1 ?>">Vue d'ensemble de votre empire</td>
    </tr>
-<tr>
-	<th>&nbsp;</th>
-<?php
-for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
-	echo "<th>";
-	if (!isset($pub_view) || $pub_view == "planets") {
-		echo "<input type='image' title='Déplacer la planète ".$user_building[$i]["planet_name"]." vers la gauche' src='images/previous.png' onclick=\"window.location = 'index.php?action=move_planet&planet_id=".$i."&view=".$view."&left';\">&nbsp;&nbsp";
-		echo "<input type='image' title='Supprimer la planète ".$user_building[$i]["planet_name"]."' src='images/drop.png' onclick=\"window.location = 'index.php?action=del_planet&planet_id=".$i."&view=".$view."';\">&nbsp;&nbsp;";
-		echo "<input type='image' title='Déplacer la planète ".$user_building[$i]["planet_name"]." vers la droite' src='images/next.png' onclick=\"window.location = 'index.php?action=move_planet&planet_id=".$i."&view=".$view."&right';\">";
-	} else echo "<input type='image' title='Supprimer la lune ".$user_building[$i]["planet_name"]."' src='images/drop.png' onclick=\"window.location = 'index.php?action=del_planet&planet_id=".$i."&view=".$view."';\">&nbsp;&nbsp;";
-	echo "</th>";
-}
-?>
-</tr>
+
 <tr>
 	<th><a>Nom</a></th>
 <?php
@@ -328,7 +320,7 @@ if($view == "planets") {
 <?php
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 	$M = $user_building[$i]["M"];
-	if ($M != "") $production = production("M", $M, $user_data['off_geologue']);
+	if ($M != "") $production = production("M", $M,  $user_data['off_geologue']);
 	else $production = "&nbsp";
 
 	echo "\t"."<th>".floor($production)."</th>"."\n";
