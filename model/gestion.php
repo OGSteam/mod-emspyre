@@ -49,6 +49,14 @@ function add_player_for_spy($g,$s,$r)
     
     
 }
+function get_name_by_spyed_id($spied_id)
+{
+   // on cherche les coord 
+   $coord =  get_coord_by_spyed_id($spied_id);
+   // ensuite on trouve le nom
+   $name = get_player_by_coord($coord);
+    return $name ;
+}
 
 function get_player_by_coord($coord)
 {

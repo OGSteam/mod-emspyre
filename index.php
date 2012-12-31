@@ -35,6 +35,11 @@ if ($pub_subaction == 'voir')
     include(FOLDER."vue/voir.php");
 }
 
+if ($pub_subaction == 'stat')
+{ 
+    include(FOLDER."vue/stat.php");
+}
+
 
 
 

@@ -21,6 +21,11 @@ function generate_menu($pub_subaction = "")
             echo "<a style='cursor:pointer'><font color='lime'>Vue empire</font></a>";
             echo "</td>";
 
+             echo "\t\t\t" . "<td class='c' width='150' onclick=\"window.location = 'index.php?action=emspyre&subaction=stat&else=voir&id=" .
+                $pub_id . "';\">";
+            echo "<a style='cursor:pointer'><font color='lime'>Vue stat</font></a>";
+            echo "</td>";
+
             echo "\t\t\t" . "<td class='c' width='150' onclick=\"window.location = 'index.php?action=emspyre&subaction=update&else=update&id=" .
                 $pub_id . "';\">";
             echo "<a style='cursor:pointer'><font color='lime'>Mise &agrave; jour</font></a>";
