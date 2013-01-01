@@ -165,6 +165,13 @@ function set_last_update($datadate , $spyed_id )
 
 
 
+function get_flotte($id)
+{
+    $requete = "select * from ".EMSPYRE_USER_FLOTTE." where user_id = ".$id." ;";
+    $retour = my_assoc($requete);
+    return $retour[0];
+}
+
 function MY_user_get_empire($id)
 {
     global $db;
