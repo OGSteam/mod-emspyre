@@ -10,7 +10,7 @@ if (!defined('IN_SPYOGAME')) {
 if (!isset($pub_zoom) || !isset($pub_user_stat_name) || !isset($pub_player_comp) ||
     !isset($pub_user_stat_name)) {
     $pub_user_stat_name = "";
-    $pub_player_comp = $user_data["user_stat_name"];
+    $pub_player_comp = "" ;//$user_data["user_stat_name"];
     $pub_user_stat_name = "";
     $pub_zoom = "";
 }
