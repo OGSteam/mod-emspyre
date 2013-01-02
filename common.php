@@ -14,6 +14,7 @@ define("EMSPYRE_USER", $table_prefix.TAB_PREFIX."_user");
 
 /// includes des fichiers
 define("FOLDER","mod/emspyre/");
+define("FOLDER_JS","mod/emspyre/js/");
 include(FOLDER."model/install.php");
 include(FOLDER."model/sql.php");
 include(FOLDER."model/user.php");

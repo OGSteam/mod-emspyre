@@ -1,8 +1,12 @@
 <?php if (!defined( 'IN_SPYOGAME')) { die( "Hacking attempt"); } 
 
+?>
+<script src="<?php echo FOLDER_JS;?>flotte.js" type="text/javascript"></script>
+<?php
 $id = (int)$pub_id;
 $flotte = get_flotte($id);
 
+$flotte_ids[] = array('SAT', 'Satellite solaire' ,0 ); /// a aller chercher : somme de tous les sat dans bulding
 $flotte_ids[] = array('PT', 'Petit Transporteur' , $flotte['PT'] );
 $flotte_ids[] = array('GT', 'Grand Transporteur' , $flotte['GT'] );
 $flotte_ids[] = array('CLE', 'Chasseur Leger' , $flotte['CLE'] );
@@ -25,46 +29,49 @@ $flotte_ids[] = array('TRA', 'Traqueur' , $flotte['TRA'] );
 			<td class="c">
 			</td>
 			<td class="c">
-				Nombre scanné
+				Nombre scann&eacute;
 			</td>
 			<td class="c">
-				Nombre estimé
+				Nombre estim&eacute; manquant
 			</td>
 			<td class="c">
 				TOTAL
 			</td>
 		</tr>
+        
 
 <?php foreach($flotte_ids   as $flotte_id ) : ?>
             <tr>
 			<td class="c">
                 <?php echo $flotte_id[1]; ?>
 			</td>
-			<th>
+			<th id="flotte_scanne_<?php echo $flotte_id[0];?>">
 				 <?php echo $flotte_id[2]; ?>
 			</th>
 			<th>
-				
+				<input id="flotte_estime_<?php echo $flotte_id[0];?>" type='text' value='0' onchange='update_page()' />
 			</th>
-			<th>
+			<th id="flotte_flottes_<?php echo $flotte_id[0];?>">
 				
 			</th>
 		</tr>
-<?php endforeach; ?>. <tr>
+<?php endforeach; ?><tr>
 			<td class="c">
                 TOTAL
-                		</td>
-			<th>
+             </td>
+			<th id="total_flotte_scanne">
 				
 			</th>
-			<th>
+			<th id="total_flotte_estime">
 				
 			</th>
-			<th>
+			<th id="total_flottes">
 				
 			</th>
 		</tr>
 	</table>
     
     
-    
+<script type="text/javascript">
+update_page();
+</script>
