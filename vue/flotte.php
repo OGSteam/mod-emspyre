@@ -4,7 +4,13 @@
 <script src="<?php echo FOLDER_JS;?>flotte.js" type="text/javascript"></script>
 <?php
 $id = (int)$pub_id;
+$user_stat_name = get_name_by_spyed_id($id) ;
+$last_pts_general = get_last_pts_general_by_stat_name($user_stat_name);
+$last_nb_flotte = get_last_nb_flotte_by_stat_name($user_stat_name);
+$last_pt_flotte = get_last_pts_flotte_by_stat_name($user_stat_name);
+
 $flotte = get_flotte($id);
+
 
 $flotte_ids[] = array('SAT', 'Satellite solaire' ,0 ); /// a aller chercher : somme de tous les sat dans bulding
 $flotte_ids[] = array('PT', 'Petit Transporteur' , $flotte['PT'] );
@@ -21,9 +27,30 @@ $flotte_ids[] = array('DST', 'Destructeur' , $flotte['DST'] );
 $flotte_ids[] = array('EDLM', 'EDLM' , $flotte['EDLM'] );
 $flotte_ids[] = array('TRA', 'Traqueur' , $flotte['TRA'] );
 
+$user_empire = my_user_get_empire($id);
+//var_dump($user_empire);
+$user_building = $user_empire["building"];
+$user_defence = $user_empire["defence"];
+$user_technology = $user_empire["technology"];
 
-//var_dump($flotte);
+$nb_planete = my_find_nb_planete_user($id);
+//var_dump($nb_planete);
+$b = round(all_building_cumulate(array_slice($user_building, 0, $nb_planete)) /
+    1000);
+$d = round(all_defence_cumulate(array_slice($user_defence, 0, $nb_planete)) /
+    1000);
+$l = round(all_lune_cumulate(array_slice($user_building, $nb_planete, $nb_planete),
+    array_slice($user_defence, $nb_planete, $nb_planete)) / 1000);
+$t = round(all_technology_cumulate($user_technology) / 1000);
+$f_calculé = $last["general_pts"] - $b - $d - $l - $t;
+
+
+///var_dump($last["general_pts"]);
 ?>
+<table>
+<tr>
+<td>
+
 	<table>
 		<tr>
 			<td class="c">
@@ -70,6 +97,64 @@ $flotte_ids[] = array('TRA', 'Traqueur' , $flotte['TRA'] );
 			</th>
 		</tr>
 	</table>
+    </td>
+<td>
+<table>
+<tr>
+<td class="c" colspan="2">Information Stat</td>
+</tr>
+<tr>
+<td class="c" >Points totaux classement</td>
+<th><?php echo $last_pts_general;?></th>
+</tr>
+<tr>
+<td class="c" >Nombre de vaisseaux classement</td>
+<th><?php echo $last_nb_flotte;?></th>
+</tr>
+<tr>
+<td class="c" colspan="2">Repartition des points connue</td>
+</tr>
+
+<tr>
+<td class="c" >Points  Batiments</td>
+<th> <?php echo $b; ?></th>
+</tr>
+</tr>
+<tr>
+<td class="c" >Points  Defenses</td>
+<th> <?php echo $d; ?></th>
+</tr>
+<tr>
+<td class="c" >Points  Flotte</td>
+<th> <?php echo $last_pt_flotte;?> todo : ajouter % de fiabilité avec flotte calculé ... : $f_calculé </th>
+</tr>
+<tr>
+<td class="c" >Points  Technologies</td>
+<th> <?php echo $t; ?> </th>
+</tr>
+<tr>
+<td class="c" >Points  Lunes</td>
+<th> <?php echo $l; ?> </th>
+</tr>
+<tr>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td class="c" colspan="2">Analyse</td>
+</tr>
+<tr>
+<td class="c" >points flotte manquante</td>
+<th> ?????</th>
+</tr>
+<tr>
+<td class="c" >Nombre vaisseau manquant</td>
+<th> ?????</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
     
     
 <script type="text/javascript">

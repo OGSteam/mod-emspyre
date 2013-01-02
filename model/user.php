@@ -172,6 +172,33 @@ function get_flotte($id)
     return $retour[0];
 }
 
+function get_last_pts_general_by_stat_name($stat_name)
+{
+    $requete = "select points from ".TABLE_RANK_PLAYER_POINTS." where player = '".$stat_name."' ;";
+    $retour = my_assoc($requete);
+    return $retour[0]['points']; 
+}
+
+
+function get_last_nb_flotte_by_stat_name($stat_name)
+{
+    $requete = "select nb_spacecraft from ".TABLE_RANK_PLAYER_MILITARY." where player = '".$stat_name."' ;";
+    $retour = my_assoc($requete);
+    return $retour[0]['nb_spacecraft']; 
+}
+
+
+function get_last_pts_flotte_by_stat_name($stat_name)
+{
+    $requete = "select points from ".TABLE_RANK_PLAYER_MILITARY." where player = '".$stat_name."' ;";
+    $retour = my_assoc($requete);
+    return $retour[0]['points']; 
+}
+
+
+
+
+
 function MY_user_get_empire($id)
 {
     global $db;
