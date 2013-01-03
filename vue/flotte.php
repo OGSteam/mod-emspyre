@@ -7,7 +7,7 @@ $id = (int)$pub_id;
 $user_stat_name = get_name_by_spyed_id($id) ;
 $last_pts_general = get_last_pts_general_by_stat_name($user_stat_name);
 $last_nb_flotte = get_last_nb_flotte_by_stat_name($user_stat_name);
-$last_pt_flotte = get_last_pts_flotte_by_stat_name($user_stat_name);
+//inutile puisque flotte + def + qq type de batiment $last_pt_flotte = get_last_pts_flotte_by_stat_name($user_stat_name);
 
 $flotte = get_flotte($id);
 
@@ -42,7 +42,7 @@ $d = round(all_defence_cumulate(array_slice($user_defence, 0, $nb_planete)) /
 $l = round(all_lune_cumulate(array_slice($user_building, $nb_planete, $nb_planete),
     array_slice($user_defence, $nb_planete, $nb_planete)) / 1000);
 $t = round(all_technology_cumulate($user_technology) / 1000);
-$f_calculé = $last["general_pts"] - $b - $d - $l - $t;
+$f_calculé = $last_pts_general - $b - $d - $l - $t;
 
 
 ///var_dump($last["general_pts"]);
@@ -64,6 +64,9 @@ $f_calculé = $last["general_pts"] - $b - $d - $l - $t;
 			<td class="c">
 				TOTAL
 			</td>
+		<td class="c">
+				Total Points
+			</td>
 		</tr>
         
 
@@ -81,6 +84,9 @@ $f_calculé = $last["general_pts"] - $b - $d - $l - $t;
 			<th id="flotte_flottes_<?php echo $flotte_id[0];?>">
 				
 			</th>
+            <th id="flotte_flottes_points_<?php echo $flotte_id[0];?>">
+				
+			</th>
 		</tr>
 <?php endforeach; ?><tr>
 			<td class="c">
@@ -93,6 +99,9 @@ $f_calculé = $last["general_pts"] - $b - $d - $l - $t;
 				
 			</th>
 			<th id="total_flottes">
+				
+			</th>
+		      <th id="total_flottes_points">
 				
 			</th>
 		</tr>
@@ -126,7 +135,7 @@ $f_calculé = $last["general_pts"] - $b - $d - $l - $t;
 </tr>
 <tr>
 <td class="c" >Points  Flotte</td>
-<th> <?php echo $last_pt_flotte;?> todo : ajouter % de fiabilité avec flotte calculé ... : $f_calculé </th>
+<th> <?php echo $f_calculé;?> </th>
 </tr>
 <tr>
 <td class="c" >Points  Technologies</td>
