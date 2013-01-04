@@ -120,7 +120,7 @@ function set_plapla($spyed_id,$coord,$emplacement_libre)
     $requete =  "INSERT INTO  ".EMSPYRE_USER_BUILDING." "; 
     $requete .=  " (user_id, planet_id, planet_name, coordinates, fields, temperature_min, temperature_max)  " ; 
     $requete .= "VALUES ";
-    $requete .= " (".$spyed_id.", ".$emplacement_libre.", '?????', '".$coord."', ".$field.", ".$temperature[0].", ".$temperature[1].");";
+    $requete .= " (".$spyed_id.", ".$emplacement_libre.", '?????', '".$coord."', ".(int)$field.", ".(int)$temperature[0].", ".(int)$temperature[1].");";
     $result = $db->sql_query($requete);
     
     return true;

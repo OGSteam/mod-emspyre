@@ -42,7 +42,7 @@ function get_diametre_by_coord($coord)
     $r = $my_coord['r'];
     
     $tab = array();
-    $tab[0]= 100;
+    $tab[1]= 100;
     $tab[2] = 103;
     $tab[3] = 118;
     $tab[4] = 164;
