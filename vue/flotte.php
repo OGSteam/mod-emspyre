@@ -114,11 +114,11 @@ $f_calculé = $last_pts_general - $b - $d - $l - $t;
 </tr>
 <tr>
 <td class="c" >Points totaux classement</td>
-<th><?php echo $last_pts_general;?></th>
+<th id="vaisseaux_classement"><?php echo $last_pts_general;?></th>
 </tr>
 <tr>
 <td class="c" >Nombre de vaisseaux classement</td>
-<th><?php echo $last_nb_flotte;?></th>
+<th><input id="nb_vaisseaux_classement" value="<?php echo $last_nb_flotte;?>" onchange='update_page()' /> </th>
 </tr>
 <tr>
 <td class="c" colspan="2">Repartition des points connue</td>
@@ -135,7 +135,7 @@ $f_calculé = $last_pts_general - $b - $d - $l - $t;
 </tr>
 <tr>
 <td class="c" >Points  Flotte</td>
-<th> <?php echo $f_calculé;?> </th>
+<th id="pts_flotte_calcule"> <?php echo $f_calculé;?> </th>
 </tr>
 <tr>
 <td class="c" >Points  Technologies</td>
@@ -154,18 +154,34 @@ $f_calculé = $last_pts_general - $b - $d - $l - $t;
 </tr>
 <tr>
 <td class="c" >points flotte manquante</td>
-<th> ?????</th>
+<th id="flotte_manquante_pt_a"> ?????</th>
 </tr>
 <tr>
 <td class="c" >Nombre vaisseau manquant</td>
-<th> ?????</th>
+<th id="flotte_manquante_nb_a"> ?????</th>
 </tr>
+<tr>
+<td class="c" colspan="2">Recherche</td>
+</tr>
+<tr>
+<td class="c" colspan="2" >Nombre vaisseau manquant :</td>
+</tr>
+<td>
+<select name="nom_select" id="nom_select" onchange="calcul_max_vaisseaux();">
+
+</select>
+</td>
+<th> ?????</th>
 </table>
 </td>
 </tr>
 </table>
-    
+ <br />
+
+
+
     
 <script type="text/javascript">
 update_page();
+create_option_value();
 </script>
