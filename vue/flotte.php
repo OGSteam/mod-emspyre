@@ -164,14 +164,14 @@ $f_calculé = $last_pts_general - $b - $d - $l - $t;
 <td class="c" colspan="2">Recherche</td>
 </tr>
 <tr>
-<td class="c" colspan="2" >Nombre vaisseau manquant :</td>
+<td class="c" colspan="2" >Nombre max possible de ce type :</td>
 </tr>
 <td>
 <select name="nom_select" id="nom_select" onchange="calcul_max_vaisseaux();">
 
 </select>
 </td>
-<th> ?????</th>
+<th id="calcul_max_vaisseaux"> ?????</th>
 </table>
 </td>
 </tr>

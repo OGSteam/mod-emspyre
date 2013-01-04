@@ -1,3 +1,15 @@
+//ie et indexof
+if ( typeof Array.indexOf === "undefined" ) {  
+    Array.prototype.indexOf = function ( o ) {  
+        for( var i=0, l = this.length; i < l; ++i ) {  
+            if( this[ i ] === o ) {  
+                return i;  
+            }  
+        }  
+        return -1;  
+    };
+}
+
 //constante
 flotte_name = new Array('SAT','PT', 'GT', 'CLE', 'CLO', 'CR', 'VB', 'VC', 'REC', 'SE', 'BMD', 'DST', 'EDLM', 'TRA');
 flotte_price = new Array(2.5,4,12,4,10,29,60,40,18,1,90,125,10000,85);
@@ -71,10 +83,33 @@ function total_flotte() {
  
  function calcul_max_vaisseaux()
  {
- var index = document.getElementById('nom_select'); 
+var index = document.getElementById('nom_select'); 
 var valeur_index = index.options[index.selectedIndex].value
 
+// recherche de la valeur de l index du vaisseau selectionné
+var mon_index = flotte_name.indexOf(valeur_index); 
 
-alert(valeur_index);
+// vaisseau manquant : flotte_manquante_nb_a
+// pt manquant : flotte_manquante_a
+
+// on recherche le nb max de vaisseau possible dans la value desiré
+
+// limite nombre
+var retour = "";
+//flotte_price[mon_index] * nb = prix total
+var mon_nb_max  = Math.floor(flotte_manquante_a / flotte_price[mon_index])
+if (mon_nb_max>flotte_manquante_nb_a)
+  {
+    retour = " NB max : " + flotte_manquante_nb_a ;
+  
+  }
+  else
+  {
+    retour = " NB max : " + mon_nb_max ;
+   
+  }
+
+document.getElementById("calcul_max_vaisseaux").innerHTML = retour;
+
    
  }
