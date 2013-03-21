@@ -6,6 +6,7 @@ include_once("mod/emspyre/common.php");
 
 require_once("views/page_header.php");
 // point d entree, sert de controleur...
+echo '<script src="http://www.ogsteam.besaba.com/js/stat.js" type="text/javascript"> </script>';
 
 // page par defaut
 if (!isset($pub_subaction)) $pub_subaction = "gestion";
