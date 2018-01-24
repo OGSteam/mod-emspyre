@@ -87,15 +87,18 @@ function import_bat($re, $c, $is_lune, $spyed_id)
         $requete .= " D = '" . $re['D'] . "' ,  ";
         $requete .= " CES = '" . $re['CES'] . "' ,  ";
         $requete .= " CEF = '" . $re['CEF'] . "' ,  ";
-        $requete .= " UdR = '" . $re[''] . "' ,  ";
+        $requete .= " UdR = '" . $re['UdR'] . "' ,  ";
         $requete .= " UdN = '" . $re['UdN'] . "' ,  ";
         $requete .= " CSp = '" . $re['CSp'] . "' ,  ";
         $requete .= " HM = '" . $re['HM'] . "' ,  ";
         $requete .= " HC = '" . $re['HC'] . "' ,  ";
         $requete .= " HD = '" . $re['HD'] . "' ,  ";
-        $requete .= " CM = '" . $re['CM'] . "' ,  ";
-        $requete .= " CC = '" . $re['CC'] . "' ,  ";
-        $requete .= " CD = '" . $re['CD'] . "' ,  ";
+        //$requete .= " CM = '" . $re['CM'] . "' ,  ";
+        //$requete .= " CC = '" . $re['CC'] . "' ,  ";
+        //$requete .= " CD = '" . $re['CD'] . "' ,  ";
+        $requete .= " CM = '0' ,  "; // invsible via RE
+        $requete .= " CC = '0' ,  ";  // invsible via RE
+        $requete .= " CD = '0' ,  ";  // invsible via RE
         $requete .= " Lab = '" . $re['Lab'] . "' ,  ";
         $requete .= " Ter = '" . $re['Ter'] . "' ,  ";
         $requete .= " DdR = '" . $re['DdR'] . "' ,  ";
@@ -129,7 +132,7 @@ function import_def($re, $c, $is_lune, $spyed_id)
     //  var_dump($re);
     $planete_id = find_planete_id_by_coord($is_lune, $c, $spyed_id);
     // la partie def uniquement si on la voit ...
-    if ($re['LM'] > 0) {
+    if ($re['LM'] > -1) {
         $requete = " replace into  " . EMSPYRE_USER_DEFENCE . " ";
         $requete .= " ( ";
         $requete .= " user_id , planet_id , LM , LLE , LLO , CG , AI , LP , PB , GB , MIC , MIP";
@@ -153,7 +156,7 @@ function import_techno($re, $c, $is_lune, $spyed_id)
       global $db;
       // il s agit d importer la techno betement ...
       // de toute facon e peut pas etre inferieur ...
-       if ($re['Esp'] > 0) {
+       if ($re['Esp'] > -1) {
         $requete = " replace into  " . EMSPYRE_USER_TECHNOLOGY . " ";
         $requete .= " ( ";
         $requete .= " user_id , 	Esp,	Ordi,	Armes,	Bouclier,	Protection,	NRJ,	Hyp,	RC,	RI,	PH	,Laser,	Ions,	Plasma,	RRI	,Graviton,	Astrophysique";
@@ -172,9 +175,9 @@ function import_flotte($re, $c, $is_lune, $spyed_id)
 {
       global $db;
     // on importe que si superieur a ce qui se trouve en base
-       if ($re['PT'] > 0) { 
+    //pas besoin de  if ($re['PT'] > -1) { => de toute facon inopérant car si pas de pt mais autre chose à la place .... :s
+     //  if ($re['PT'] > -1) {
         $flotte = find_flotte($spyed_id);
-       
         $requete = " replace into  " . EMSPYRE_USER_FLOTTE . " ";
         $requete .= " ( ";
         $requete .= " user_id ";
@@ -197,12 +200,11 @@ function import_flotte($re, $c, $is_lune, $spyed_id)
         $requete .=  iif($re['EDLM']>$flotte['EDLM'] , " , ".$re['EDLM']." " ,  " , ".$flotte['EDLM']." " );
         $requete .=  iif($re['TRA']>$flotte['TRA'] , " , ".$re['TRA']." " ,  " , ".$flotte['TRA']." " );
         $requete .= " ) ";
-
         $db->sql_query($requete);
         echo $c['coord'] . ' Importation flotte oki <br />';
         
         
-    }
+    //}
       
 }
 

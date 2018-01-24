@@ -1,2 +1,2 @@
-Module d affichage informations comptes ogame
+Module d affichage informations des ennemis
 
