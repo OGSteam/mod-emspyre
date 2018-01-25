@@ -56,8 +56,10 @@ function add_player_for_spy($g,$s,$r)
    global $user_data;
    //var_dump($user_data);
    $requete = " replace into ".EMSPYRE_USER." ( user_id , coord ) VALUES (".$user_data['user_id'].",'".$g.":".$s.":".$r."');";
-    $db->sql_query($requete);
-    
+   $db->sql_query($requete);
+    //preparation d'une flotte vide
+    import_flotte_empty($db->sql_insertid());
+
     
     
 }

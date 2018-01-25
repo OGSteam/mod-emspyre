@@ -82,33 +82,32 @@ function import_bat($re, $c, $is_lune, $spyed_id)
     if ($re['M'] > 0) {
         $requete .= " ,  ";
         $requete .= " Sat = '" . $re['SAT'] . "' ,  ";
-        $requete .= " M = '" . $re['M'] . "' ,  ";
-        $requete .= " C = '" . $re['C'] . "' ,  ";
-        $requete .= " D = '" . $re['D'] . "' ,  ";
-        $requete .= " CES = '" . $re['CES'] . "' ,  ";
-        $requete .= " CEF = '" . $re['CEF'] . "' ,  ";
-        $requete .= " UdR = '" . $re['UdR'] . "' ,  ";
-        $requete .= " UdN = '" . $re['UdN'] . "' ,  ";
-        $requete .= " CSp = '" . $re['CSp'] . "' ,  ";
-        $requete .= " HM = '" . $re['HM'] . "' ,  ";
-        $requete .= " HC = '" . $re['HC'] . "' ,  ";
-        $requete .= " HD = '" . $re['HD'] . "' ,  ";
+        $requete .= " M = '" . formatNonNegativ($re['M']) . "' ,  ";
+        $requete .= " C = '" . formatNonNegativ($re['C']) . "' ,  ";
+        $requete .= " D = '" . formatNonNegativ($re['D']) . "' ,  ";
+        $requete .= " CES = '" . formatNonNegativ($re['CES']) . "' ,  ";
+        $requete .= " CEF = '" . formatNonNegativ($re['CEF'] ). "' ,  ";
+        $requete .= " UdR = '" . formatNonNegativ($re['UdR']) . "' ,  ";
+        $requete .= " UdN = '" . formatNonNegativ($re['UdN']) . "' ,  ";
+        $requete .= " CSp = '" . formatNonNegativ($re['CSp']) . "' ,  ";
+        $requete .= " HM = '" . formatNonNegativ($re['HM']) . "' ,  ";
+        $requete .= " HC = '" . formatNonNegativ($re['HC']) . "' ,  ";
+        $requete .= " HD = '" . formatNonNegativ($re['HD']) . "' ,  ";
         //$requete .= " CM = '" . $re['CM'] . "' ,  ";
         //$requete .= " CC = '" . $re['CC'] . "' ,  ";
         //$requete .= " CD = '" . $re['CD'] . "' ,  ";
         $requete .= " CM = '0' ,  "; // invsible via RE
         $requete .= " CC = '0' ,  ";  // invsible via RE
         $requete .= " CD = '0' ,  ";  // invsible via RE
-        $requete .= " Lab = '" . $re['Lab'] . "' ,  ";
-        $requete .= " Ter = '" . $re['Ter'] . "' ,  ";
-        $requete .= " DdR = '" . $re['DdR'] . "' ,  ";
-        $requete .= " Silo = '" . $re['Silo'] . "' ,  ";
-        $requete .= " BaLu = '" . $re['BaLu'] . "' ,  ";
-        $requete .= " Pha = '" . $re['Pha'] . "' ,  ";
-        $requete .= " PoSa = '" . $re['PoSa'] . "'   ";
+        $requete .= " Lab = '" . formatNonNegativ($re['Lab']) . "' ,  ";
+        $requete .= " Ter = '" . formatNonNegativ($re['Ter']) . "' ,  ";
+        $requete .= " DdR = '" . formatNonNegativ($re['DdR']) . "' ,  ";
+        $requete .= " Silo = '" . formatNonNegativ($re['Silo']) . "' ,  ";
+        $requete .= " BaLu = '" . formatNonNegativ($re['BaLu']) . "' ,  ";
+        $requete .= " Pha = '" . formatNonNegativ($re['Pha']) . "' ,  ";
+        $requete .= " PoSa = '" . formatNonNegativ($re['PoSa']) . "'   ";
 
     }
-
 
     /// where clause
     $requete .= " where ";
@@ -126,6 +125,20 @@ function import_bat($re, $c, $is_lune, $spyed_id)
 }
 
 
+function formatNonNegativ($value)
+{
+    if ($value == -1){
+        return 0;
+    }
+    else
+    {
+        return  $value;
+    }
+}
+
+
+
+
 function import_def($re, $c, $is_lune, $spyed_id)
 {
     global $db;
@@ -139,10 +152,18 @@ function import_def($re, $c, $is_lune, $spyed_id)
         $requete .= " ) ";
         $requete .= " Values ";
         $requete .= " ( ";
-        $requete .= " " . $spyed_id . "  , " . $planete_id . " , " . $re['LM'] . "  , " .
-            $re['LLE'] . "  , " . $re['LLO'] . " , " . $re['CG'] . " , " . $re['AI'] . " , " .
-            $re['LP'] . " , " . $re['PB'] . " , " . $re['GB'] . " , " . $re['MIC'] . " , " .
-            $re['MIP'] . "  ";
+        $requete .= " " . $spyed_id . "  
+            , " . $planete_id . " 
+            , " . formatNonNegativ($re['LM']) . "  , 
+            " . formatNonNegativ($re['LLE']) . "  , 
+            " . formatNonNegativ($re['LLO']) . " , 
+            " .formatNonNegativ($re['CG']) . " , 
+            " . formatNonNegativ($re['AI']) . " , 
+            " . formatNonNegativ($re['LP']) . " , 
+            " . formatNonNegativ($re['PB']) . " , 
+            " . formatNonNegativ($re['GB']) . " , 
+            " . formatNonNegativ($re['MIC']) . " , 
+            " .  formatNonNegativ($re['MIP']) . "  ";
         $requete .= " ) ";
 
         $db->sql_query($requete);
@@ -163,14 +184,36 @@ function import_techno($re, $c, $is_lune, $spyed_id)
         $requete .= " ) ";
         $requete .= " Values ";
         $requete .= " ( ";
-        $requete .= " " . $spyed_id . " , " . $re['Esp'] . "  ,    " . $re['Ordi'] . "  , " . $re['Armes'] . "  , " . $re['Bouclier'] . "  , " . $re['Protection'] . "  ," . $re['NRJ'] . "  ," . $re['Hyp'] . "," . $re['RC'] . "," . $re['RI'] . ", " . $re['PH'] . ", " . $re['Laser'] . ", " . $re['Ions'] . ", " . $re['Plasma'] . ",  " . $re['RRI'] . ", " . $re['Graviton'] . ",   " . $re['Astrophysique'] . "  ";
+        $requete .= " " . $spyed_id . " , " .  formatNonNegativ($re['Esp']) . "  ,    " .  formatNonNegativ($re['Ordi']) . "  , " .  formatNonNegativ($re['Armes']) . "  , 
+        " .  formatNonNegativ($re['Bouclier']) . "  , " .  formatNonNegativ($re['Protection']) . "  ," .  formatNonNegativ($re['NRJ']) . "  ," .  formatNonNegativ($re['Hyp']) . "
+        ," .  formatNonNegativ($re['RC']) . "," .  formatNonNegativ($re['RI']) . ", " .  formatNonNegativ($re['PH']) . ", " .  formatNonNegativ($re['Laser'] ). "
+        , " .  formatNonNegativ($re['Ions'] ). ", " .  formatNonNegativ($re['Plasma']) . ",  " .  formatNonNegativ($re['RRI']) . ", " .  formatNonNegativ($re['Graviton']) . ",
+           " . formatNonNegativ($re['Astrophysique'] ). "  ";
         $requete .= " ) ";
 
         $db->sql_query($requete);
         echo $c['coord'] . ' Importation techno oki <br />';
     }
     }
-      
+
+    function import_flotte_empty($spyed_id)
+    {
+        global $db;
+        // on importe que si superieur a ce qui se trouve en base
+        //pas besoin de  if ($re['PT'] > -1) { => de toute facon inopérant car si pas de pt mais autre chose à la place .... :s
+        //  if ($re['PT'] > -1) {
+        $requete = " replace into  " . EMSPYRE_USER_FLOTTE . " ";
+        $requete .= " ( ";
+        $requete .= " user_id ";
+        $requete .= " ) ";
+        $requete .= " Values ";
+        $requete .= " ( ";
+        $requete .= " " . $spyed_id . "  ";
+        $requete .= " ) ";
+        $db->sql_query($requete);
+    }
+
+
 function import_flotte($re, $c, $is_lune, $spyed_id)
 {
       global $db;
