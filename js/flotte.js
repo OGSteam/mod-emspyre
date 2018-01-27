@@ -28,7 +28,7 @@ function update_page() {
 function analyse()
 {
     var nb_vaisseaux_classement = document.getElementById("nb_vaisseaux_classement").value;
-    flotte_manquante_nb_a =  parseInt(document.getElementById("nb_vaisseaux_classement").value) - parseInt(document.getElementById("total_flotte_scanne").innerHTML ) ;
+    flotte_manquante_nb_a =  parseInt(document.getElementById("nb_vaisseaux_classement").value) - parseInt(document.getElementById("total_flottes").innerHTML ) ;
     // flotte manquante nb 
     document.getElementById("flotte_manquante_nb_a").innerHTML = flotte_manquante_nb_a ;
     // flotte manquante pt 
@@ -112,4 +112,10 @@ if (mon_nb_max>flotte_manquante_nb_a)
 document.getElementById("calcul_max_vaisseaux").innerHTML = retour;
 
    
+ }
+
+ function re_calcul_max_vaisseaux()
+ {
+     update_page();
+     calcul_max_vaisseaux();
  }
