@@ -16,10 +16,10 @@ $user_building = $user_empire["building"];
 $user_defence = $user_empire["defence"];
 $user_technology = $user_empire["technology"];
 if(!isset($pub_else) || $pub_else=="") $view = "planets";
-elseif ($pub_else == "moon") $view = $pub_view;
+elseif ($pub_else == "moon") $view = "moons";
 else $view = "planets";
 $start = $view=="planets" ? 101 : 201;
- $view_ratio = false; // vue prod reel si ratio inf a 0
+$view_ratio = false; // vue prod reel si ratio inf a 0
  
 /* Restes du Lang Empire :-) */
 $technology_requirement["Esp"] = array(3);

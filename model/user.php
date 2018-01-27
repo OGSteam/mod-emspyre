@@ -117,7 +117,7 @@ function set_plapla($spyed_id,$coord,$emplacement_libre)
     $temperature = get_temperature_by_coord($coord);
     $field = get_diametre_by_coord($coord);
     
-    $requete =  "INSERT INTO  ".EMSPYRE_USER_BUILDING." "; 
+    $requete =  "REPLACE INTO  ".EMSPYRE_USER_BUILDING." ";
     $requete .=  " (user_id, planet_id, planet_name, coordinates, fields, temperature_min, temperature_max)  " ; 
     $requete .= "VALUES ";
     $requete .= " (".$spyed_id.", ".$emplacement_libre.", '?????', '".$coord."', ".(int)$field.", ".(int)$temperature[0].", ".(int)$temperature[1].");";
