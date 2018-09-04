@@ -1,8 +1,4 @@
 <?php
-
-  
-
-
 if (!defined('IN_SPYOGAME')) {
 
     die("Hacking attempt");
@@ -11,9 +7,7 @@ if (!defined('IN_SPYOGAME')) {
 
 global $db, $table_prefix;
 
-
-
-//On récupère la version actuel du mod	
+//On rÃ©cupÃ¨re la version actuel du mod	
 
 $mod_folder = "emspyre";
 
@@ -25,9 +19,4 @@ create_table();
 
 update_mod($mod_folder, $mod_name);
 
-
-
-
-
-?>
 
