@@ -14,7 +14,7 @@ function get_user_by_id($id)
 
 function create_espace_perso_moon($spyed_id, $spyed_all_coord_m)
 {
-	foreach($spyed_all_coord_m as $c) 
+	foreach($spyed_all_coord_m as $c)
 	{
 	    // premiere lune
 	    echo "<br />";
@@ -39,7 +39,6 @@ function create_espace_perso_moon($spyed_id, $spyed_all_coord_m)
 
 	}
 }
-
 
 function create_espace_perso_planete($spyed_id, $spyed_all_coord_p)
 {
@@ -67,7 +66,6 @@ foreach($spyed_all_coord_p as $c)
 }
 
 }
-
 
 function planete_exist($coord,$spyed_id)
 {
