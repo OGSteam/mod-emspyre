@@ -23,7 +23,3 @@ include(FOLDER."model/re.php");
 include(FOLDER."vue/menu.php");
 include(FOLDER."include/ogame.php");
 
-
-
-
-?>

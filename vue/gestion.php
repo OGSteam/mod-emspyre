@@ -1,13 +1,13 @@
-<?php 
+<?php
 if (!defined('IN_SPYOGAME')) {
 	die("Hacking attempt"); }
 
 
  $player = get_all_player_spyed();
- 
- 
+
+
 ?>
-    
+
 
 <br />
 <table>
@@ -15,45 +15,38 @@ if (!defined('IN_SPYOGAME')) {
 <input type="hidden" name="t" value="t" />
 <tbody>
 <tr>
-<th class="c_recherche" colspan="5">Mise en surveillance joueur</th>
+<td class="c_recherche" colspan="5">Mise en surveillance joueur</th>
 </tr>
 <tr>
-<td >Coordonn&eacute;e PM </td>
-<td>Galaxie : <input name="g" type="text" maxlength="2" size="3" /></td>
-<td>Systeme : <input name="s" type="text" maxlength="3" size="3" /></td>
-<td>Row : <input name="r" type="text" maxlength="2" size="3" /></td>
-<td><input type="submit" value="Ajouter" /></td>
+<th>Coordonnées PM </td>
+<th>Galaxie : <input name="g" type="text" maxlength="2" size="3" /></td>
+<th>Systeme : <input name="s" type="text" maxlength="3" size="3" /></td>
+<th>Planète : <input name="r" type="text" maxlength="2" size="3" /></td>
+<th><input type="submit" value="Surveiller" /></td>
 </tr>
 </tbody>
 </form>
 </table>
-<br />
-      
-    
+<br>
 	<table>
 		<tr>
-        <th>Utilisateur</th>
-		<th>Coord pm</th>
-		<th>Joueur surveill&eacute;</th>
-        <th>Derniere mise a jour</th>
-        <th>mettre a jour</th>
-        <th>voir</th>
-	   <th>Supprimer</th>
+        <td class="c">Utilisateur</th>
+				<td class="c">Coord PM</th>
+				<td class="c">Joueur surveillé</th>
+        <td class="c">Dernière mise à jour</th>
+        <td class="c">Mettre à jour</th>
+        <td class="c">Voir</th>
+	    	<td class="c">Supprimer</th>
 		</tr>
          <?php foreach ($player as $p) :?>
-              <tr>
-          <td><?php echo get_user_by_id($p['user_id']);?></td>
-          <td><?php echo $p['coord'];?></td>
-           <td><?php echo get_player_by_coord($p['coord']);?></td>
-        <td><?php echo date("Y-m-d H:i:s" ,$p['datadate']);?></td>
-         <td><a href="index.php?action=emspyre&subaction=update&else=update&id=<?php echo $p['spyed_id'];?>" ><img src="images/save.png" title="voir" /></a></td>
-        <td><a href="index.php?action=emspyre&subaction=voir&else=voir&id=<?php echo $p['spyed_id'];?>" ><img src="images/zoom_in.png" title="voir" /></a></td>
-        <td><a href="index.php?action=emspyre&subaction=gestion&else=del_player&id=<?php echo $p['spyed_id'];?>" ><img src="images/drop.png" title="Supprimer la surveillance" /></a></td>
-          </tr>
+    <tr>
+        <th><?php echo get_user_by_id($p['user_id']);?></td>
+        <th><?php echo $p['coord'];?></td>
+        <th><?php echo get_player_by_coord($p['coord']);?></td>
+        <th><?php echo date("Y-m-d H:i:s" ,$p['datadate']);?></td>
+        <th style="text-align:center;"><a href="index.php?action=emspyre&subaction=update&else=update&id=<?php echo $p['spyed_id'];?>"><img src="mod/emspyre/img/ic_refresh_green_24dp.png" title="voir" /></a></td>
+        <th style="text-align:center;"><a href="index.php?action=emspyre&subaction=voir&else=voir&id=<?php echo $p['spyed_id'];?>"><img src="images/zoom_in.png" title="voir" /></a></td>
+        <th style="text-align:center;"><a href="index.php?action=emspyre&subaction=gestion&else=del_player&id=<?php echo $p['spyed_id'];?>" ><img src="images/drop.png" title="Supprimer la surveillance" /></a></td>
+    </tr>
           <?php endforeach; ?>
-      	</table>
-    
-    
-   
-
-    
+  </table>

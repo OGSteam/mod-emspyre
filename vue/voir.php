@@ -20,7 +20,7 @@ elseif ($pub_else == "moon") $view = "moons";
 else $view = "planets";
 $start = $view=="planets" ? 101 : 201;
 $view_ratio = false; // vue prod reel si ratio inf a 0
- 
+
 /* Restes du Lang Empire :-) */
 $technology_requirement["Esp"] = array(3);
 $technology_requirement["Ordi"] = array(1);
@@ -38,15 +38,15 @@ $technology_requirement["Plasma"] = array(4, "NRJ" => 8, "Laser" => 10, "Ions" =
 $technology_requirement["RRI"] = array(10, "Ordi" => 8, "Hyp" => 8);
 $technology_requirement["Graviton"] = array(12);
 $technology_requirement["Astrophysique"] = array(3, "Esp" => 4, "RI" => 3);
- 
+
 ?>
 
 <!-- DEBUT DU SCRIPT -->
 <script language="JavaScript">
 <?php
-if(isset($pub_alert_empire) && $pub_alert_empire) echo 'message("Pensez &agrave; renseigner, si besoin est, les noms de plan&egrave;tes et les temp&eacute;ratures\nqui ne peuvent pas être r&eacute;cup&eacute;r&eacute;es par la page Empire d\'OGame.");';
+if(isset($pub_alert_empire) && $pub_alert_empire) echo 'message("Pensez à renseigner, si besoin est, les noms de planètes et les températures\nqui ne peuvent pas être récupérées par la page Empire du Jeu");';
 
-$nb_planete = my_find_nb_planete_user((int)$pub_id);
+$nb_planete = my_find_nb_planete_user(intval($pub_id));
 
 $name = $coordinates = $fields = $temperature_min = $temperature_max = $satellite = "";
 for ($i=101 ; $i<=$nb_planete+100 ; $i++) {
@@ -91,7 +91,7 @@ function autofill(planet_id, planet_selected) {
 
 	document.getElementById('temperature_max').style.visibility = 'visible';
 	document.getElementById('temperature_max').disabled = false;
-	
+
 	document.getElementById('satellite').style.visibility = 'visible';
 	document.getElementById('satellite').disabled = false;
 
@@ -150,7 +150,7 @@ function message(msg) {
 <tr>
 <?php
 if ($view == "planets") {
-	echo "<th colspan='5'><a>Plan&egrave;tes</a></th>";
+	echo "<th colspan='5'><a>Planètes</a></th>";
 	echo "<td class='c' align='center' colspan='5' onClick=\"window.location = 'index.php?action=emspyre&subaction=voir&else=moon&id=".(int)$pub_id."';\"><a style='cursor:pointer'><font color='lime'>Lunes</font></a></td>";
     echo read_th("<td class=\"c\">&nbsp;</td>",$nb_planete);
 }
@@ -170,7 +170,7 @@ else {
 	<input type="hidden" name="action" value="set_empire">
 	<input type="hidden" name="view" value="<?php echo $view; ?>">
 	<th><a>Collez les infos ici</a></th>
-	<th colspan="5"><textarea name="data" rows="2"  onFocus="clear_text2()">Empire & Bâtiments & Laboratoire & D&eacute;fenses</textarea></th>	
+	<th colspan="5"><textarea name="data" rows="2"  onFocus="clear_text2()">Empire & Bâtiments & Laboratoire & D&eacute;fenses</textarea></th>
 	<th colspan="3"><label><input name="typedata" value="E" id="empire" type="radio"/ checked><a>Empire</a></label> (<?php echo $view=="moons" ? "lunes" : "plan&egrave;tes"; ?>)&nbsp;<?php echo help("home_commandant");?><br />
 	<label><input name="typedata" id="building" value="B" type="radio" onclick="if(!select_planet) message('Vous devez s&eacute;lectionner une plan&egrave;te');"> <a>Bâtiments</a></label><label><input name="typedata" value="D" type="radio" onclick="if(!select_planet) message('Vous devez selectionner une planete');"> <a>D&eacute;fenses</a></label>
 	<?php if($view=="planets") echo '<label><input name="typedata" value="T" type="radio"> <a>Technologies</a></label>' ?></th>
@@ -185,7 +185,7 @@ else {
         <th width="<?php echo intval(abs(100 / ( 1 + $nb_planete ))); ?>%"><label><input name="planet_id" value="<?php echo $view=="planets" ? $start : $start + 100; ?>" type="radio" onclick="select_planet = autofill(<?php echo $view=="planets" ? $start : $start + 100; ?>);if (document.getElementById('empire').checked == true) document.getElementById('building').checked=true;"><?php if($view=="moons") echo "<br />".$user_building[$i]["planet_name"]; ?></label></th>
          <?php }
         ?>
-      
+
 
 </tr>
 
@@ -233,17 +233,17 @@ document.getElementById('temperature_max').style.visibility='hidden';
 document.getElementById('satellite').style.visibility='hidden';
 </script>
 
-</form> --> 
+</form> -->
 <?php
 //// verification de compte de planete/lune avec la technologie astro
 //$astro = astro_max_planete($user_technology['Astrophysique']);
 //if (((find_nb_planete_user((int)$pub_id) > $astro )||(find_nb_moon_user((int)$pub_id) >  $astro))&&($user_technology != false)){
 //echo '<tr>';
 //echo '	<td class="c" colspan="';
-//print ($nb_planete <10)?'10':($nb_planete +1) ; 
+//print ($nb_planete <10)?'10':($nb_planete +1) ;
 //echo '">Une incoh&eacute;rence a &eacute;t&eacute; trouv&eacute;e dans votre espace personnel<br />';
-//print (find_nb_planete_user((int)$pub_id) > $astro )?'En rapport avec le nombre de vos planetes<br />':'' ; 
-//print (find_nb_moon_user((int)$pub_id) > $astro )?'En rapport avec le nombre de vos lunes<br />':'' ; 
+//print (find_nb_planete_user((int)$pub_id) > $astro )?'En rapport avec le nombre de vos planetes<br />':'' ;
+//print (find_nb_moon_user((int)$pub_id) > $astro )?'En rapport avec le nombre de vos lunes<br />':'' ;
 //echo ' </td>';
 //echo'</tr>';}
 //
@@ -265,7 +265,7 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 ?>
 </tr>
 <tr>
-	<th><a>Coordonn&eacute;es</a></th>
+	<th><a>Coordonnées</a></th>
 <?php
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 	$coordinates = $user_building[$i]["coordinates"];
@@ -289,7 +289,7 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 ?>
 </tr>
 <tr>
-	<th><a>Temp&eacute;rature Min.</a></th>
+	<th><a>Température Min.</a></th>
 <?php
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 	$temperature_min = $user_building[$i]["temperature_min"];
@@ -300,7 +300,7 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 ?>
 </tr>
 <tr>
-	<th><a>Temp&eacute;rature Max.</a></th>
+	<th><a>Température Max.</a></th>
 <?php
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 	$temperature_max = $user_building[$i]["temperature_max"];
@@ -316,7 +316,7 @@ if($view == "planets") {
 	<td class="c" colspan="<?php print ($nb_planete <10)?'10':$nb_planete +1 ?>">Production th&eacute;orique</td>
   </tr>
 <tr>
-	<th><a>M&eacute;tal</a></th>
+	<th><a>Métal</a></th>
 <?php
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 	$M = $user_building[$i]["M"];
@@ -340,7 +340,7 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 ?>
 </tr>
 <tr>
-	<th><a>Deut&eacute;rium</a></th>
+	<th><a>Deutérium</a></th>
 <?php
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 	$D = $user_building[$i]["D"];
@@ -361,12 +361,14 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 $product= array( "M" => 0, "C" => 0, "D" => 0,"ratio" => 1, "conso_E" => 0, "prod_E" => 0 );
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
     $ratio[$i] = $product;
-   $NRJ = $user_technology["NRJ"] != "" ? $user_technology["NRJ"] : "0"; // pour deut !!!! erreur dans ancienne formule ou nrj etait pas prise en compte
-    $ratio[$i] = bilan_production_ratio($user_building[$i]["M"],$user_building[$i]["C"],$user_building[$i]["D"],$user_building[$i]["CES"], 
-    $user_building[$i]["CEF"],$user_building[$i]["Sat"],$user_building[$i]["temperature_min"],$user_building[$i]["temperature_max"],$NRJ,$user_data['off_ingenieur'],$user_data['off_geologue']);
-     }
-   
-   
+    $NRJ = $user_technology["NRJ"] != "" ? $user_technology["NRJ"] : "0"; // pour deut !!!! erreur dans ancienne formule ou nrj etait pas prise en compte
+		if (isset($user_building[$i]["temperature_max"])){;
+    $ratio[$i] = bilan_production_ratio($user_building[$i]["M"],$user_building[$i]["C"],$user_building[$i]["D"],$user_building[$i]["CES"],
+    $user_building[$i]["CEF"],$user_building[$i]["Sat"],$user_building[$i]["temperature_max"],$user_data['off_ingenieur'],$user_data['off_geologue'],0,$NRJ,$user_technology['Plasma']); //0 à remplacer par off Full
+		}
+}
+
+
 
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
     	echo "\t"."<th>".floor($ratio[$i]["prod_E"])."</th>\n\t";
@@ -376,36 +378,36 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 //    echo floor($production);
 //    echo ""; // todo
 //    echo "</th>"."\n";
-   
+
         if($ratio[$i]['ratio'] != 1) $view_ratio = true ;
 		//$view_ratio = false ;
         }
 
-        
+
  if ($view_ratio == true) {
     ?>
  <tr>
 	<td class="c" colspan="<?php print ($nb_planete <10)?'10':$nb_planete +1 ?>">Production R&eacute;elle</td>
   </tr>
-  
-  
+
+
    <tr>
 	<th><a>Ratio</a></th>
-   <?php 
+   <?php
    // ratio
    for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 	echo "\t"."<th>";
-    echo ($ratio[$i]['ratio'] != 1) ? "<font color='red'>".round($ratio[$i]['ratio'], 3)."</font color]" :  "<font color='lime'>-</font color]" ; 
-     echo "</th>"."\n"; 
+    echo ($ratio[$i]['ratio'] != 1) ? "<font color='red'>".round($ratio[$i]['ratio'], 3)."</font color]" :  "<font color='lime'>-</font color]" ;
+     echo "</th>"."\n";
 
 } ?>
-    
+
   <tr>
 	<th><a>M&eacute;tal</a></th>
 <?php
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 	echo "\t"."<th>";
- echo ($ratio[$i]['ratio'] != 1) ? floor($ratio[$i]['M']) :  "-" ; 
+ echo ($ratio[$i]['ratio'] != 1) ? floor($ratio[$i]['M']) :  "-" ;
     echo "</th>"."\n";
 }
 ?>
@@ -415,7 +417,7 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 <?php
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 		echo "\t"."<th>";
-    echo ($ratio[$i]['ratio'] != 1) ? floor($ratio[$i]['C']) :  "-" ; 
+    echo ($ratio[$i]['ratio'] != 1) ? floor($ratio[$i]['C']) :  "-" ;
     echo "</th>"."\n";
 }
 ?>
@@ -425,11 +427,11 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 <?php
 for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 	echo "\t"."<th>";
-    echo ($ratio[$i]['ratio'] != 1) ? floor($ratio[$i]['D']) :  "-" ; 
+    echo ($ratio[$i]['ratio'] != 1) ? floor($ratio[$i]['D']) :  "-" ;
     echo "</th>"."\n";
  }
 
-}      
+}
 
 ?>
 </tr>
@@ -491,7 +493,7 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 }
 
 } // fin de si view="planets"
-else 
+else
 {
 echo '</tr><tr> <td class="c" colspan="';
 print ($nb_planete <10)?'10':$nb_planete +1 ;
@@ -1043,7 +1045,7 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 		while ($value = current($requirement)) {
 			$key = key($requirement);
 			if ($key === 0) {
-				if ($Lab < $value){ $Plasma = "-";} 
+				if ($Lab < $value){ $Plasma = "-";}
 			}
 			elseif ($user_technology[$key] < $value) {
 				$Plasma = "-";
@@ -1140,7 +1142,7 @@ for ($i=$start ; $i<=$start+$nb_planete -1 ; $i++) {
 </tr>
 <tr>
 	<td class="c_defense" colspan="<?php print ($nb_planete <10)?'10':$nb_planete +1 ?>">D&eacute;fenses</td>
-  
+
 </tr>
 <tr>
 	<th><a>Lanceur de missiles</a></th>
@@ -1265,7 +1267,7 @@ function read_th($txt,$nb_planete){
     {
       for ($i=10 ; $i<=$nb_planete; $i++) {
        $retour=$retour.$txt;
-              
+
     }
     }
 	return $retour;

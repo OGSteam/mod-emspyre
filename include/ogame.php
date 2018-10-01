@@ -3,7 +3,6 @@ if (!defined('IN_SPYOGAME')) {
 	die("Hacking attempt");
 }
 
-
 // il s agit d une estimation part variable ( temp moyenne constaté)
 function get_temperature_by_coord($coord)
 {

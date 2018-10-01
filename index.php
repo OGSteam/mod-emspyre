@@ -1,12 +1,11 @@
 <?php
-if (!defined('IN_SPYOGAME')) die("Hacking attempt"); // Pas d'accès direct
+if (!defined('IN_SPYOGAME')) die("Hacking attempt"); // Pas d'accï¿½s direct
  // includes classes
 include_once("mod/emspyre/common.php");
 
 
 require_once("views/page_header.php");
 // point d entree, sert de controleur...
-echo '<script src="http://www.ogsteam.besaba.com/js/stat.js" type="text/javascript"> </script>';
 
 // page par defaut
 if (!isset($pub_subaction)) $pub_subaction = "gestion";
@@ -63,19 +62,8 @@ if ($pub_subaction == 'prod')
 
 
 
-
-
-
-
-
-
 require_once("views/page_tail.php"); //on inclus la queue d'ogspy
 
 
 //Voila le mod est fini ! Pas trop triste ? :D
-
-
-
-
-?>
 
